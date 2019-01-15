@@ -13,5 +13,8 @@
 
 Route::get('/', 'PagesController@home');
 Route::get('/users', 'UsersController@index');
-Route::post('/users', 'UsersCOntroller@create');
-// test commit for IDE
+//Route::post('/users', 'UsersCOntroller@create');
+
+Route::get('/games', 'GamesController@index');
+Route::get('/games/create', 'GamesController@create');
+Route::post('/games', 'GamesController@create');

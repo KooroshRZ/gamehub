@@ -1,0 +1,14 @@
+.content {
+    padding: 50px;
+}
+
+.text-input-labels {
+    background: #007bff;
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px;
+    color: #ffffff;
+}
+
+.inputs {
+    padding: 10px;
+}
