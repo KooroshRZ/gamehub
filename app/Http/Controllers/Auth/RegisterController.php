@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use http\Env\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use MongoDB\BSON\Timestamp;
 
 class RegisterController extends Controller
 {
@@ -64,9 +66,22 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'username' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'picture' => 'somepic',
+            'firstName' => 'Kourosh',
+            'lastName' => 'Rajab',
+            'gender' => 'male',
+            'gamesPlayed' => '5',
+            'gamesWined' => '3',
+            'avgScore' => '1000',
+            'lastPlayedGame' => '11',
+            'birthday' => new \DateTime()
         ]);
+
+//        return User::create(request()->all());
+
+//        return request()->all();
     }
 }
