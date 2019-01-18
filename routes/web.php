@@ -17,4 +17,8 @@ Route::get('/users', 'UsersController@index');
 
 Route::get('/games', 'GamesController@index');
 Route::get('/games/create', 'GamesController@create');
-Route::post('/games', 'GamesController@create');
+Route::get('/games/{id}', 'GamesController@show');
+Route::post('/games', 'GamesController@store');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
