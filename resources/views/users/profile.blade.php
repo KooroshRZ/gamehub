@@ -12,7 +12,7 @@
                 @foreach ($user->getAttributes() as $key => $value)
 
                     @if($key == 'picture')
-                        <img class="col-4" src="/images/users/{{ $value }}">
+                        <img class="col-5" src="/images/users/{{ $value }}">
                         <br><br>
 
                     @elseif($key == 'username' || $key == 'firstName' || $key == 'lastName' || $key == 'gender'
@@ -30,7 +30,7 @@
 
         <div class="column right">
             <h1>Games</h1>
-            <hr style="border-top: 2px solid green">
+            <hr style="border-top: 4px solid green">
             <div class="up">
                 <h3>Created</h3>
                 @foreach($createdGames as $created)
@@ -41,11 +41,21 @@
                         <li> Max Throws: {{$created->maxThrows}} </li>
                         <li> Stars: {{$created->stars}} </li>
                     </ul>
-                    <hr style="border-top: 1px dot-dash greenyellow">
+                    <hr style="border-top: 2px solid darkolivegreen">
                 @endforeach
             </div>
+            <br>
             <div class="down">
                 <h3>Played</h3>
+
+                @foreach($playedGames as $played)
+                    <ul>
+                        <li> user1: {{$played->userId1}} </li>
+                        <li> user2: {{$played->userId2}} </li>
+                        <li> game ID: {{$played->gameId}} </li>
+                    </ul>
+                    <hr style="border-top: 2px solid darkolivegreen">
+                @endforeach
             </div>
 
         </div>

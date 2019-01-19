@@ -123,10 +123,9 @@
                 <h2>Online Users</h2>
                 <ul>
                     @foreach($users as $user)
-                        <li>{{ $user->username }}</li>
+                        <li> <a href="/users/{{$user->username}}">{{ $user->username }} </a></li>
                     @endforeach
                 </ul>
-
             </div>
         </div>
 
