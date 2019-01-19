@@ -5,9 +5,43 @@
     background: #1b1e21;
     color: #fff;
     alignment: center;
+    position: relative;
 }
 
 .footer img {
-    width: 50px;
-    height: 50px;
+    width: 5%;
+    height: 5%;
+}
+
+html, body {
+    background-color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    margin: 0;
+}
+
+
+.position-ref {
+    position: relative;
+}
+
+/*.content {*/
+    /*padding: 188px;*/
+/*}*/
+
+.title {
+    font-size: 84px;
+}
+
+.login {
+    padding: 7%;
+}
+
+.register {
+    padding: 7%;
+}
+
+.main {
+    /*height: 75%;*/
+    padding: 20px;
 }

@@ -3,12 +3,12 @@
 
     <link rel="stylesheet" href="/css/create_game.css" type="text/css">
 
-    <div class="content">
+    <div class="main">
         <form method="POST" action="/games">
 
             {{ csrf_field() }}
 
-            <div class="form-group col-3 inputs">
+            <div class="form-group col-4 inputs">
                 <label class="text-input-labels" for="maxScore">1: MAX SCORE</label>
                 <input name="maxScore" type="text" class="form-control" placeholder="100">
             </div>
