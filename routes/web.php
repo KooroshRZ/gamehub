@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PagesController@home');
+//Route::get('/', 'PagesController@home');
 
 Route::get('logout', 'Auth\LoginController@logout');
 
@@ -23,3 +23,4 @@ Route::post('/games', 'GamesController@store');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/profile', 'UsersController@profile')->middleware('auth');
