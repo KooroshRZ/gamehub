@@ -1,3 +1,39 @@
 .home {
     padding: 10px;
 }
+
+.column {
+    float: left;
+    padding: 10px;
+    /*height: 100%; !* Should be removed. Only for demonstration *!*/
+}
+
+.left {
+    width: 30%;
+    margin: 20px;
+    background: #9591b9;
+    border-radius: 5px 5px 5px 5px;
+    font-size: 30px;
+}
+
+.right {
+    width: 60%;
+    margin: 20px;
+    font-size: 20px;
+    border-radius: 5px 5px 5px 5px;
+    background: rgba(201, 222, 69, 0.82);
+}
+
+/* Clear floats after the columns */
+.row:after {
+    display: table;
+    clear: both;
+}
+
+.most-online-games {
+    padding: 20px;
+}
+
+.most-played-games {
+    padding: 20px;
+}

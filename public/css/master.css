@@ -14,7 +14,7 @@
 }
 
 html, body {
-    background-color: #fff;
+    background-color: #ffffff;
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
     margin: 0;
@@ -24,10 +24,6 @@ html, body {
 .position-ref {
     position: relative;
 }
-
-/*.content {*/
-    /*padding: 188px;*/
-/*}*/
 
 .title {
     font-size: 84px;
@@ -42,6 +38,7 @@ html, body {
 }
 
 .main {
-    /*height: 75%;*/
-    padding: 20px;
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    /*position:relative;*/
 }
