@@ -12,13 +12,14 @@
 */
 
 Route::get('/', 'PagesController@home');
-Route::get('/users', 'UsersController@index');
-//Route::post('/users', 'UsersCOntroller@create');
+
+Route::get('logout', 'Auth\LoginController@logout');
 
 Route::get('/games', 'GamesController@index');
 Route::get('/games/create', 'GamesController@create');
 Route::get('/games/{id}', 'GamesController@show');
 Route::post('/games', 'GamesController@store');
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');

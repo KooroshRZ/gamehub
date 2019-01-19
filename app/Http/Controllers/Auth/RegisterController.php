@@ -53,15 +53,16 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'password' => ['required', 'string', 'confirmed'],
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \App\User
+     * @throws \Exception
      */
     protected function create(array $data)
     {
@@ -73,10 +74,11 @@ class RegisterController extends Controller
             'firstName' => 'Kourosh',
             'lastName' => 'Rajab',
             'gender' => 'male',
-            'gamesPlayed' => '5',
-            'gamesWined' => '3',
-            'avgScore' => '1000',
-            'lastPlayedGame' => '11',
+            'gamesPlayed' => 5,
+            'gamesWined' => 3,
+            'stars' => 5,
+            'lastPlayedGame' => 11,
+            'isOnline' => true,
             'birthday' => new \DateTime()
         ]);
 
