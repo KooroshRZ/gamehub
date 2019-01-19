@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\games;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GamesController extends Controller
 {
@@ -30,15 +31,17 @@ class GamesController extends Controller
 
     public function store(){
 
-//        Games::create([
-//            'maxScore' => request('maxScore'),
-//            'zeroMaker' => request('zeroMaker'),
-//            'diceNumbers' => request('diceNumbers'),
-//            'maxThrows' => request('maxThrows'),
-//            'creator'=> 'Kourosh'
-//        ]);
+        Games::create([
+            'maxScore' => request('maxScore'),
+            'zeroMaker' => request('zeroMaker'),
+            'diceNumbers' => request('diceNumbers'),
+            'maxThrows' => request('maxThrows'),
+            'userId'=> Auth::id(),
+            'stars' => 0,
+            'isPlaying' => false
+        ]);
 
-        Games::create(request()->all());
+//        Games::create(request()->all());
 
 //        $game = new \App\Games();
 //        $game->maxScore = request('maxScore');
