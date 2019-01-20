@@ -42,3 +42,7 @@ html, body {
     /*flex-wrap: wrap;*/
     /*position:relative;*/
 }
+
+img {
+    border-radius: 5px 5px 5px 5px;
+}
