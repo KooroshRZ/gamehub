@@ -55,19 +55,8 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" href="/verify_sers_comments">VERIFY USERS COMMENTS</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="/games">ALL GAMES</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="/games/create">DESIGN GAME</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="/logout">LOGOUT</a>
-                        </li>
-                    @else
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="/profile">PROFILE</a>
-                        </li>
+
+                    @endif
                         <li class="nav-item">
                             <a class="nav-link text-light" href="/users">USERS</a>
                         </li>
@@ -77,7 +66,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" href="/logout">LOGOUT</a>
                         </li>
-                    @endif
                 @endguest
             </ul>
         </div>

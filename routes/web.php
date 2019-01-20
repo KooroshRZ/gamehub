@@ -25,5 +25,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::get('/profile', 'UsersController@profile')->middleware('auth');
 
+Route::get('/users', 'UsersController@index');
 Route::get('/users/{name}', 'UsersController@show')->middleware('auth');
 Route::post('/users/{id}/friend', 'UsersController@addFriend')->middleware('auth');

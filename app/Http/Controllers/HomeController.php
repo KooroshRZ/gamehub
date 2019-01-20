@@ -25,8 +25,16 @@ class HomeController extends Controller
     public function index()
     {
 
-        $users = \App\User::all()->where('isOnline', '=', '1');
+        $users = \App\User::all()
+            ->where('isOnline', '=', '1');
         $authUser = Auth::user();
-        return view('home', compact('users'), compact('authUser'));
+        $friends = \DB::table('users')
+            ->join('friends', 'users.id', '=', 'friends.userId1')
+            ->select('users.*')
+            ->where('userId1', '=', Auth::id())
+            ->orWhere('userId2', '=', Auth::id())
+            ->get();
+
+        return view('home', compact('users', 'friends', 'authUser'));
     }
 }

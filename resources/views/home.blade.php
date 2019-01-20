@@ -122,9 +122,16 @@
                 @endauth
                 <h2>Online Users</h2>
                 <ul>
-                    @foreach($users as $user)
-                        <li> <a href="/users/{{$user->username}}">{{ $user->username }} </a></li>
+                    @foreach($friends as $friend)
+                        <li> <a href="/users/{{$friend->username}}" style="color: red;">{{ $friend->username }} </a></li>
                     @endforeach
+
+                        @foreach($users as $user)
+                            @if(Auth::id() != $user->id)
+                                <li> <a href="/users/{{$user->username}}" style="color: black;">{{ $user->username }} </a></li>
+                            @endif()
+                        @endforeach
+
                 </ul>
             </div>
         </div>
