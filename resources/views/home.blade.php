@@ -125,9 +125,9 @@
 
                     @foreach($friends as $friend)
                         @foreach($users as $user)
-                            @if($user->id =  $friend->id)
+                            @if($user->id == $friend->id)
                                 @php
-                                    $user->isFriend = true
+                                    $user->isFriend = true;
                                 @endphp
                             @endif
                         @endforeach
@@ -142,14 +142,13 @@
 
 
                     @foreach($users as $user)
-                        {{--@if(Auth::id() != $user->id)--}}
-                            {{--sjdhfjkdsfk--}}
+                        @if(Auth::id() != $user->id)
                             @if (!$user->isFriend)
                                 <li> <a href="/users/{{$user->username}}" style="color: black;">{{ $user->username }} </a></li>
                             @else
-                                    <li> <a href="/users/{{$user->username}}" style="color: red;">{{ $user->username }} </a></li>
+                                <li> <a href="/users/{{$user->username}}" style="color: red;">{{ $user->username }} </a></li>
                             @endif
-                        {{--@endif--}}
+                        @endif
                     @endforeach
 
                 </ul>

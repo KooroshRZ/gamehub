@@ -53,7 +53,7 @@
                             <a class="nav-link text-light" href="/verify_games_comments">VERIFY GAMES COMMENTS <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="/verify_sers_comments">VERIFY USERS COMMENTS</a>
+                            <a class="nav-link text-light" href="/verify_users_comments">VERIFY USERS COMMENTS</a>
                         </li>
 
                     @endif

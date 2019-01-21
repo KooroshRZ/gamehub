@@ -32,10 +32,8 @@ class HomeController extends Controller
         $friends = \DB::table('users')
             ->join('friends', 'users.id', '=', 'friends.userId2')
             ->select('users.*')
-            ->where('userId1', '=', Auth::id())
-            ->orWhere('userId2', '=', Auth::id())
+            ->where('users.id', '=', 'users.userId1')
             ->get();
-
 
 //        dd($friends);
 
