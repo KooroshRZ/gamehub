@@ -28,12 +28,16 @@ class HomeController extends Controller
         $users = \App\User::all()
             ->where('isOnline', '=', '1');
         $authUser = Auth::user();
+
         $friends = \DB::table('users')
-            ->join('friends', 'users.id', '=', 'friends.userId1')
+            ->join('friends', 'users.id', '=', 'friends.userId2')
             ->select('users.*')
             ->where('userId1', '=', Auth::id())
             ->orWhere('userId2', '=', Auth::id())
             ->get();
+
+
+//        dd($friends);
 
         return view('home', compact('users', 'friends', 'authUser'));
     }

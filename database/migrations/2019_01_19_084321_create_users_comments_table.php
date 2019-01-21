@@ -15,8 +15,10 @@ class CreateUsersCommentsTable extends Migration
     {
         Schema::create('users_comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('userId')->unsigned();
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('issuer')->unsigned();
+            $table->foreign('issuer')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('issuedTo')->unsigned();
+            $table->foreign('issuedTo')->references('id')->on('users')->onDelete('cascade');
             $table->text('content');
             $table->boolean('isVerified');
             $table->timestamps();

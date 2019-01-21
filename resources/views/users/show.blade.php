@@ -27,28 +27,26 @@
         </ul>
 
         @if(Auth::id() != $user->id)
-            @foreach($friends as $friend)
-                @if($friend->id == $user->id)
-                    firend
-                    @break
-                @else
-                    @continue
-                @endif
-                {{--<form method="POST" action="/users/{{$user->id}}/friend">--}}
-                    {{--{{ csrf_field() }}--}}
-                    {{--<button class="btn btn-success inputs col-2" type="submit" value="SAVE" style="margin-left: 15px;margin-bottom: 15px">ADD FRIEND</button>--}}
-                {{--</form>--}}
-            @endforeach
-        @endif
-    </div>
 
-    <script>
-        function isFriend(friend, friends) {
-            for(let f in friends)
-                if (friend === f)
-                    console.log(true);
-            console.log(false)
-        }
-    </script>
+            <form method="POST" action="/users/{{$user->id}}/friend">
+                {{ csrf_field() }}
+                <button class="btn btn-success inputs col-2" type="submit" value="SAVE" style="margin-left: 15px;margin-bottom: 15px">ADD FRIEND</button>
+            </form>
+
+            <form method="POST" action="/users/comments/{{$user->id}}">
+
+                {{ csrf_field() }}
+
+                <div class="form-group col-4 inputs">
+                    <label class="text-input-labels" for="comment">COMMENT</label>
+                    <input name="comment" type="textarea" class="form-control">
+                </div>
+
+                <button type="submit" class="btn btn-success inputs" style="margin-bottom: 15px; margin-left: 15px">SAVE COMMENT</button>
+            </form>
+
+        @endif
+
+    </div>
 
 @endsection()

@@ -28,3 +28,6 @@ Route::get('/profile', 'UsersController@profile')->middleware('auth');
 Route::get('/users', 'UsersController@index');
 Route::get('/users/{name}', 'UsersController@show')->middleware('auth');
 Route::post('/users/{id}/friend', 'UsersController@addFriend')->middleware('auth');
+Route::post('/uses/{id}', 'UsersController@update')->middleware('auth');
+
+Route::post('/users/comments/{id}', 'UsersController@addComment');

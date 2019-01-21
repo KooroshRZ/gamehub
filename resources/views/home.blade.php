@@ -122,15 +122,35 @@
                 @endauth
                 <h2>Online Users</h2>
                 <ul>
+
                     @foreach($friends as $friend)
-                        <li> <a href="/users/{{$friend->username}}" style="color: red;">{{ $friend->username }} </a></li>
+                        @foreach($users as $user)
+                            @if($user->id =  $friend->id)
+                                @php
+                                    $user->isFriend = true
+                                @endphp
+                            @endif
+                        @endforeach
                     @endforeach
 
-                        @foreach($users as $user)
-                            @if(Auth::id() != $user->id)
+
+                    {{--@foreach($friends as $friend)--}}
+                        {{--@if(Auth::id() != $friend->id)--}}
+                            {{--<li> <a href="/users/{{$friend->username}}" style="color: red;">{{ $friend->username }} </a></li>--}}
+                        {{--@endif--}}
+                    {{--@endforeach--}}
+
+
+                    @foreach($users as $user)
+                        {{--@if(Auth::id() != $user->id)--}}
+                            {{--sjdhfjkdsfk--}}
+                            @if (!$user->isFriend)
                                 <li> <a href="/users/{{$user->username}}" style="color: black;">{{ $user->username }} </a></li>
-                            @endif()
-                        @endforeach
+                            @else
+                                    <li> <a href="/users/{{$user->username}}" style="color: red;">{{ $user->username }} </a></li>
+                            @endif
+                        {{--@endif--}}
+                    @endforeach
 
                 </ul>
             </div>

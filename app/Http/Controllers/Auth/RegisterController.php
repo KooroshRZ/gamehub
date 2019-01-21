@@ -69,7 +69,7 @@ class RegisterController extends Controller
         return User::create([
             'username' => $data['name'],
             'email' => $data['email'],
-            'password' => $data['password'],
+            'password' => Hash::make($data['password']),
             'picture' => 'somepic',
             'firstName' => 'Kourosh',
             'lastName' => 'Rajab',
@@ -79,7 +79,8 @@ class RegisterController extends Controller
             'stars' => 5,
             'lastPlayedGame' => 11,
             'isOnline' => true,
-            'birthday' => new \DateTime()
+            'birthday' => new \DateTime(),
+            'isFriend' => false
         ]);
 
 //        return User::create(request()->all());

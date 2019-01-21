@@ -16,7 +16,7 @@
                         <br><br>
 
                     @elseif($key == 'username' || $key == 'firstName' || $key == 'lastName' || $key == 'gender'
-                            || $key == 'birthday' || $key == 'email' || $key == 'password')
+                            || $key == 'birthday' || $key == 'email')
                         <div class="form-group col-6     inputs">
                             <label class="text-input-labels" for="{{ $key }}">{{ $key }}</label>
                             <input name="{{ $key }}" type="text" class="form-control" value="{{ $value }}">
