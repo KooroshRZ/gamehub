@@ -51,9 +51,16 @@ class UsersController extends Controller
             ->where('userId1', '=', Auth::id())
             ->get();
 
+        $comments = \DB::table('users_comments')
+            ->where('issuedTo', '=', $user->id)
+            ->where('isVerified', '=', true)
+            ->get();
+
+//        dd($comments);
+
 //        dd($friends);
 
-        return view('users.show', compact('user', 'friends'));
+        return view('users.show', compact('user', 'friends', 'comments'));
 
     }
 

@@ -10,12 +10,42 @@
             background: #d7d3c5;
             border-radius: 5px 5px 5px 5px;
         }
+
+        .column {
+            float: left;
+            padding: 10px;
+        }
+
+        .left {
+            width: 40%;
+            margin: 20px;
+            background: #9cb9b9;
+            border-radius: 5px 5px 5px 5px;
+            font-size: 30px;
+        }
+
+        .right {
+            width: 50%;
+            margin: 20px;
+            font-size: 20px;
+            border-radius: 5px 5px 5px 5px;
+            background: rgba(201, 222, 69, 0.82);
+            padding: 30px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            display: table;
+            clear: both;
+        }
+
     </style>
 
-    <div class="profile">
+    <div class="profile row">
+        <div class="column left">
         <ul>
 
-            <img src="/images/users/{{ $user->picture }}">
+            <img src="/images/users/{{ $user->picture }}" style="margin-top: 10px">
             <br><br>
             @foreach($user->getAttributes() as $key => $value)
 
@@ -30,7 +60,7 @@
 
             <form method="POST" action="/users/{{$user->id}}/friend">
                 {{ csrf_field() }}
-                <button class="btn btn-success inputs col-2" type="submit" value="SAVE" style="margin-left: 15px;margin-bottom: 15px">ADD FRIEND</button>
+                <button class="btn btn-success inputs col-3" type="submit" value="SAVE" style="margin-left: 15px;margin-bottom: 15px">ADD FRIEND</button>
             </form>
 
             <form method="POST" action="/users/comments/{{$user->id}}">
@@ -46,7 +76,17 @@
             </form>
 
         @endif
+        </div>
 
+        <div class="column right">
+            <h3>COMMENTS</h3>
+            <hr>
+            @foreach($comments as $comment)
+                <h5>BY: {{ $comment->issuer }}</h5>
+                <p>{{$comment->content  }}</p>
+                <br>
+            @endforeach
+        </div>
     </div>
 
 @endsection()
