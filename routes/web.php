@@ -31,12 +31,14 @@ Route::post('/users/{id}/friend', 'UsersController@addFriend')->middleware('auth
 Route::post('/uses/{id}', 'UsersController@update')->middleware('auth');
 
 Route::post('/users/comments/{id}', 'UsersController@addComment')->middleware('auth');
+Route::post('/games/comments/{id}', 'GamesController@addComment')->middleware('auth');
 
-Route::get('/verify_games_comments/', 'CommentsController@indexGames')->middleware('auth');
-Route::get('/verify_users_comments/', 'CommentsController@indexUsers')->middleware('auth');
+Route::get('/verify_games_comments/', 'CommentsController@indexGamesComments')->middleware('auth');
+Route::get('/verify_users_comments/', 'CommentsController@indexUsersComments')->middleware('auth');
+
+
+Route::post('/verify_users_comments/{id}/accept', 'CommentsController@acceptUserComment')->middleware('auth');
+Route::post('/verify_users_comments/{id}/decline', 'CommentsController@declineUserComment')->middleware('auth');
 
 Route::post('/verify_games_comments/{id}/accept', 'CommentsController@acceptGameComment')->middleware('auth');
-Route::post('/verify_users_comments/{id}/accept', 'CommentsController@acceptUserComment')->middleware('auth');
-
 Route::post('/verify_games_comments/{id}/decline', 'CommentsController@declineGameComment')->middleware('auth');
-Route::post('/verify_users_comments/{id}/decline', 'CommentsController@declineUserComment')->middleware('auth');

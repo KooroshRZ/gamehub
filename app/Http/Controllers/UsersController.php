@@ -29,25 +29,24 @@ class UsersController extends Controller
             ->orWhere('userId2', '=', Auth::id())
             ->get();
 
-        $friends = \DB::table('users')
-                        ->join('friends', 'users.id', '=', 'friends.userId1')
-                        ->select('users.*')
-                        ->where('userId1', '=', Auth::id())
-                        ->orWhere('userId2', '=', Auth::id())
-                        ->get();
+//        $friends = \DB::table('users')
+//                        ->join('friends', 'users.id', '=', 'friends.userId1')
+//                        ->select('users.*')
+//                        ->where('userId1', '=', Auth::id())
+//                        ->orWhere('userId2', '=', Auth::id())
+//                        ->get();
 
         $user = Auth::user();
 
         return view('users.profile',
-            compact('user', 'createdGames', 'playedGames', 'friends'));
+            compact('user', 'createdGames', 'playedGames'));
     }
 
     public function show($name){
 
         $user = \App\User::where('username', '=', $name)->first();
-        $friends = \DB::table('users')
-            ->join('friends', 'users.id', '=', 'friends.userId1')
-            ->select('users.*')
+
+        $friends = \DB::table('friends')
             ->where('userId1', '=', Auth::id())
             ->get();
 
@@ -56,27 +55,23 @@ class UsersController extends Controller
             ->where('isVerified', '=', true)
             ->get();
 
-//        dd($comments);
-
-//        dd($friends);
-
         return view('users.show', compact('user', 'friends', 'comments'));
 
     }
 
     public function addFriend($id){
 
-        $friends1 = \DB::table('friends')
-            ->where('userId1', '=', Auth::id())
-            ->orWhere('userId2', '=', $id)
-            ->get();
+//        $friends1 = \DB::table('friends')
+//            ->where('userId1', '=', Auth::id())
+//            ->orWhere('userId2', '=', $id)
+//            ->get();
+//
+//        $friends2 = \DB::table('friends')
+//            ->where('userId1', '=', $id)
+//            ->orWhere('userId2', '=', Auth::id())
+//            ->get();
 
-        $friends2 = \DB::table('friends')
-            ->where('userId1', '=', $id)
-            ->orWhere('userId2', '=', Auth::id())
-            ->get();
-
-        if (!isset($friends1) && !isset($friends2))
+//        if (!isset($friends1) && !isset($friends2))
             \DB::table('friends')->insert([
                     'userId1' => Auth::id(),
                     'userId2' => $id

@@ -21,7 +21,7 @@
             margin: 20px;
             background: #9cb9b9;
             border-radius: 5px 5px 5px 5px;
-            font-size: 30px;
+            font-size: 20px;
         }
 
         .right {
@@ -58,10 +58,22 @@
 
         @if(Auth::id() != $user->id)
 
-            <form method="POST" action="/users/{{$user->id}}/friend">
-                {{ csrf_field() }}
-                <button class="btn btn-success inputs col-3" type="submit" value="SAVE" style="margin-left: 15px;margin-bottom: 15px">ADD FRIEND</button>
-            </form>
+            @php
+                $isFriend = false;
+                foreach ($friends as $friend){
+                    if ($friend->userId2 == $user->id){
+                        $isFriend = true;
+                        break;
+                    }
+                }
+            @endphp
+
+            @if(!$isFriend)
+                <form method="POST" action="/users/{{$user->id}}/friend">
+                    {{ csrf_field() }}
+                    <button class="btn btn-success inputs col-3" type="submit" value="SAVE" style="margin-left: 15px;margin-bottom: 15px">ADD FRIEND</button>
+                </form>
+            @endif
 
             <form method="POST" action="/users/comments/{{$user->id}}">
 
@@ -69,7 +81,7 @@
 
                 <div class="form-group col-4 inputs">
                     <label class="text-input-labels" for="comment">COMMENT</label>
-                    <input name="comment" type="textarea" class="form-control">
+                    <textarea name="comment" rows="4" cols="40" style="border-radius: 5px 5px 5px 5px"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-success inputs" style="margin-bottom: 15px; margin-left: 15px">SAVE COMMENT</button>

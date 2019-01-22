@@ -15,12 +15,16 @@ class GamesController extends Controller
 
     }
 
-    public function show(\App\Games $game){
+    public function show($id){
 
-//        $game = \App\Games::FindOrFail($id);\
-        return $game;
+        $game = \App\Games::where('id', '=', $id)->first();
+        $comments = \DB::table('games_comments')
+            ->where('issuedTo', '=', $game->id)
+            ->where('isVerified', '=', true)
+            ->get();
 
-//        return view('games.show', compact('game'));
+
+        return view('games.show', compact('game', 'comments'));
 
     }
 
@@ -54,6 +58,18 @@ class GamesController extends Controller
 
         return redirect('games/create');
 
+    }
+
+    public function addComment($id){
+
+        \DB::table('games_comments')->insert([
+            'content' => request('comment'),
+            'issuer' => Auth::id(),
+            'issuedTo' => $id,
+            'isVerified' => false
+        ]);
+
+        return redirect('/games/'.$id);
     }
 
 }

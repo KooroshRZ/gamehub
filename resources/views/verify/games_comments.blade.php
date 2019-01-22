@@ -7,17 +7,24 @@
     <div class="verify">
         @foreach($comments as $comment)
 
-                <h3>@php \App\User::find($comment->issuer) @endphp</h3>
-                <h3>@php \App\User::find($comment->issuedTo) @endphp</h3>
-                <p>$comment->content</p>
-            <form method="POST" action="/users/{{ $user->id }}">
-                {{ csrf_field() }}
-                @if(!$comment->isVerified)
-                    <button class="btn btn-success inputs col-6" type="submit" value="SAVE" style="margin-left: 15px; margin-top: 15px">ACCEPT</button>
-                @else
-                    <button class="btn btn-success inputs col-6" type="submit" value="SAVE" style="margin-left: 15px; margin-top: 15px">DECLINE</button>
-                @endif
-            </form>
+            @php $user=\App\User::find($comment->issuer) @endphp
+            @php $game=\App\Games::find($comment->issuedTo) @endphp
+            commenter: {{ $user->username }}
+            comment for game ID: {{ $game->id }}
+
+            <p>{{$comment->content}}</p>
+
+            @if(!$comment->isVerified)
+                <form method="POST" action="/verify_games_comments/{{$comment->id}}/accept">
+                    {{ csrf_field() }}
+                    <button class="btn btn-success inputs col-2" type="submit" style="margin-left: 15px; margin-top: 15px">ACCEPT</button>
+                </form>
+            @else
+                <form method="POST" action="/verify_games_comments/{{ $comment->id }}/decline">
+                    {{ csrf_field() }}
+                    <button class="btn btn-danger inputs col-2" type="submit" style="margin-left: 15px; margin-top: 15px">DECLINE</button>
+                </form>
+            @endif
         @endforeach
     </div>
 @endsection

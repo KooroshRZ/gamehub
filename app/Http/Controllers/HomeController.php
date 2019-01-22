@@ -29,11 +29,13 @@ class HomeController extends Controller
             ->where('isOnline', '=', '1');
         $authUser = Auth::user();
 
-        $friends = \DB::table('users')
-            ->join('friends', 'users.id', '=', 'friends.userId2')
-            ->select('users.*')
-            ->where('users.id', '=', 'users.userId1')
+        $friends = \DB::table('friends')
+            ->where('userId1', '=', Auth::id())
             ->get();
+//            ->join('friends', 'users.id', '=', 'friends.userId2')
+//            ->select('friends.userId')
+//            ->where('users.id', '=', 'users.userId1')
+//            ->get();
 
 //        dd($friends);
 

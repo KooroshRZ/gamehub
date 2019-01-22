@@ -66,6 +66,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" href="/logout">LOGOUT</a>
                         </li>
+                        {{--</div>--}}
                 @endguest
             </ul>
         </div>

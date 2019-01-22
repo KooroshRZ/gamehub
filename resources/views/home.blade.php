@@ -123,31 +123,25 @@
                 <h2>Online Users</h2>
                 <ul>
 
-                    @foreach($friends as $friend)
-                        @foreach($users as $user)
-                            @if($user->id == $friend->id)
-                                @php
-                                    $user->isFriend = true;
-                                @endphp
-                            @endif
-                        @endforeach
-                    @endforeach
-
-
                     {{--@foreach($friends as $friend)--}}
-                        {{--@if(Auth::id() != $friend->id)--}}
-                            {{--<li> <a href="/users/{{$friend->username}}" style="color: red;">{{ $friend->username }} </a></li>--}}
-                        {{--@endif--}}
+                        {{--@foreach($users as $user)--}}
+                            {{--@if($user->id == $friend->id)--}}
+                                {{--@php--}}
+                                    {{--$user->isFriend = true;--}}
+                                {{--@endphp--}}
+                            {{--@endif--}}
+                        {{--@endforeach--}}
                     {{--@endforeach--}}
+
+
+                    @foreach($friends as $friend)
+                        <li> <a href="/users/{{ \App\User::find($friend->userId2)->username }}" style="color: red;">{{ \App\User::find($friend->userId2)->username }} </a></li>
+                    @endforeach
 
 
                     @foreach($users as $user)
                         @if(Auth::id() != $user->id)
-                            @if (!$user->isFriend)
-                                <li> <a href="/users/{{$user->username}}" style="color: black;">{{ $user->username }} </a></li>
-                            @else
-                                <li> <a href="/users/{{$user->username}}" style="color: red;">{{ $user->username }} </a></li>
-                            @endif
+                            <li> <a href="/users/{{$user->username}}" style="color: black;">{{ $user->username }} </a></li>
                         @endif
                     @endforeach
 
