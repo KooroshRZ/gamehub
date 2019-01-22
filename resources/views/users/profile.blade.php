@@ -7,12 +7,12 @@
         <div class="column left">
 
             Personal Info
-            <form method="POST" action="/users/{{ $user->id }}">
+            <form method="POST" action="/users/{{ $user->id }}/edit">
                 {{ csrf_field() }}
                 @foreach ($user->getAttributes() as $key => $value)
 
                     @if($key == 'picture')
-                        <img class="col-5" src="/images/users/{{ $value }}">
+                        <img src="/images/users/{{ $value }}" style="margin-left: 15px">
                         <br><br>
 
                     @elseif($key == 'username' || $key == 'firstName' || $key == 'lastName' || $key == 'gender'
@@ -50,8 +50,11 @@
 
                 @foreach($playedGames as $played)
                     <ul>
-                        <li> user1: {{$played->userId1}} </li>
-                        <li> user2: {{$played->userId2}} </li>
+                        @if(Auth::id() == $played->userId1)
+                            <li> WITH: {{ \App\User::find($played->userId2)->username }} </li>
+                        @elseif(Auth::id() == $played->userId2)
+                            <li> WITH: {{ \App\User::find($played->userId1)->username }} </li>
+                        @endif
                         <li> game ID: {{$played->gameId}} </li>
                     </ul>
                     <hr style="border-top: 2px solid darkolivegreen">

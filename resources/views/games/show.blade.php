@@ -55,7 +55,7 @@
                 <li> IS PLAYING : {{ $game->isPlaying == true ? 'yes' : 'no' }} </li>
             </ul>
 
-            <div>
+            @auth
                 <form method="POST" action="/games/comments/{{$game->id}}">
 
                     {{ csrf_field() }}
@@ -67,7 +67,7 @@
 
                     <button type="submit" class="btn btn-success inputs" style="margin-bottom: 15px; margin-left: 15px">SAVE COMMENT</button>
                 </form>
-            </div>
+            @endauth
         </div>
 
         <div class="column right">

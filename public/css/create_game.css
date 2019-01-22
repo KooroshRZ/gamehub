@@ -1,5 +1,8 @@
 .content {
-    padding: 50px;
+    padding: 40px;
+    background: rgba(131, 106, 114, 0.55);
+    border-radius: 5px 5px 5px 5px;
+    margin: 20px;
 }
 
 .text-input-labels {
@@ -7,8 +10,4 @@
     border-radius: 5px 5px 5px 5px;
     padding: 5px;
     color: #ffffff;
-}
-
-.inputs {
-    padding: 10px;
 }

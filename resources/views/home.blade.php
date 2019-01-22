@@ -109,13 +109,14 @@
                     <div>
 
                         <h2>profile summary</h2>
-                            <p>Username: {{ $authUser->username }}</p>
-                            <p><img src="/images/users/{{$authUser->picture}}"></p>
-                            <p>Full Name : {{ $authUser->firstName }} {{ $authUser->lastName }}</p>
-                            <p>Email: {{ $authUser->email }}</p>
-                            <p>Total Games Played: {{ $authUser->gamesPlayed }}</p>
-                            <p>Total Games Wined: {{ $authUser->gamesWined }}</p>
-                            <p>stars: {{ $authUser->stars }}</p>
+                        <img src="/images/users/{{$authUser->picture}}">
+                        <br><br>
+                        <p>Username: {{ $authUser->username }}</p>
+                        <p>Full Name : {{ $authUser->firstName }} {{ $authUser->lastName }}</p>
+                        <p>Email: {{ $authUser->email }}</p>
+                        <p>Total Games Played: {{ $authUser->gamesPlayed }}</p>
+                        <p>Total Games Wined: {{ $authUser->gamesWined }}</p>
+                        <p>stars: {{ $authUser->stars }}</p>
                         <a href="profile"><button class="btn btn-info inputs">PROFILE</button></a>
                     </div>
                     <br><br>
@@ -123,23 +124,22 @@
                 <h2>Online Users</h2>
                 <ul>
 
-                    {{--@foreach($friends as $friend)--}}
-                        {{--@foreach($users as $user)--}}
-                            {{--@if($user->id == $friend->id)--}}
-                                {{--@php--}}
-                                    {{--$user->isFriend = true;--}}
-                                {{--@endphp--}}
-                            {{--@endif--}}
-                        {{--@endforeach--}}
-                    {{--@endforeach--}}
-
-
                     @foreach($friends as $friend)
                         <li> <a href="/users/{{ \App\User::find($friend->userId2)->username }}" style="color: red;">{{ \App\User::find($friend->userId2)->username }} </a></li>
+
                     @endforeach
 
 
                     @foreach($users as $user)
+
+                        @foreach($friends as $friend)
+                            @if($friend->userId2 == $user->id)
+                                @php
+                                    $user->id = Auth::id();
+                                @endphp
+                            @endif
+                        @endforeach
+
                         @if(Auth::id() != $user->id)
                             <li> <a href="/users/{{$user->username}}" style="color: black;">{{ $user->username }} </a></li>
                         @endif
@@ -149,10 +149,6 @@
             </div>
         </div>
 
-        @guest
-        @else
-
-        @endguest
     </div>
 
 @endsection

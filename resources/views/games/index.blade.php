@@ -16,4 +16,8 @@
         @endforeach
     </ol>
 
+    @auth
+        <a href="/games/create"><button class="btn btn-primary" style="margin-left: 40px; margin-bottom: 20px">NEW GAME</button></a>
+    @endauth
+
 @endsection()

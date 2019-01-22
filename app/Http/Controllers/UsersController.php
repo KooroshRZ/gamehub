@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use const http\Client\Curl\AUTH_ANY;
-use http\Client\Curl\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use phpDocumentor\Reflection\Types\Compound;
 
 class UsersController extends Controller
 {
@@ -19,22 +15,15 @@ class UsersController extends Controller
     public function profile(){
 
         $createdGames = \DB::table('users')
-                        ->join('games', 'users.id', '=', 'games.userId')
+                        ->join('games', 'users.id', '=', 'games.creator')
                         ->select('games.*')
-                        ->where('userId', '=', Auth::id())
+                        ->where('creator', '=', Auth::id())
                         ->get();
 
         $playedGames = \DB::table('games_played')
             ->where('userId1', '=', Auth::id())
             ->orWhere('userId2', '=', Auth::id())
             ->get();
-
-//        $friends = \DB::table('users')
-//                        ->join('friends', 'users.id', '=', 'friends.userId1')
-//                        ->select('users.*')
-//                        ->where('userId1', '=', Auth::id())
-//                        ->orWhere('userId2', '=', Auth::id())
-//                        ->get();
 
         $user = Auth::user();
 
@@ -61,17 +50,6 @@ class UsersController extends Controller
 
     public function addFriend($id){
 
-//        $friends1 = \DB::table('friends')
-//            ->where('userId1', '=', Auth::id())
-//            ->orWhere('userId2', '=', $id)
-//            ->get();
-//
-//        $friends2 = \DB::table('friends')
-//            ->where('userId1', '=', $id)
-//            ->orWhere('userId2', '=', Auth::id())
-//            ->get();
-
-//        if (!isset($friends1) && !isset($friends2))
             \DB::table('friends')->insert([
                     'userId1' => Auth::id(),
                     'userId2' => $id
@@ -81,12 +59,18 @@ class UsersController extends Controller
         return redirect('/home');
     }
 
-    public function update(array $data){
+    public function update($id){
 
-        dd($data);
+        $user = \App\User::find($id);
+        $user->username = request('username');
+        $user->firstName = request('firstName');
+        $user->lastName = request('lastName');
+        $user->gender = request('gender');
+        $user->birthday = request('birthday');
 
-//        $user = \App\User::find($id);
-//        \App\User::updated(\request())
+        $user->save();
+
+        return redirect('/profile');
 
     }
 

@@ -75,17 +75,19 @@
                 </form>
             @endif
 
-            <form method="POST" action="/users/comments/{{$user->id}}">
+            @auth
+                <form method="POST" action="/users/comments/{{$user->id}}">
 
-                {{ csrf_field() }}
+                    {{ csrf_field() }}
 
-                <div class="form-group col-4 inputs">
-                    <label class="text-input-labels" for="comment">COMMENT</label>
-                    <textarea name="comment" rows="4" cols="40" style="border-radius: 5px 5px 5px 5px"></textarea>
-                </div>
+                    <div class="form-group col-4 inputs">
+                        <label class="text-input-labels" for="comment">COMMENT</label>
+                        <textarea name="comment" rows="4" cols="40" style="border-radius: 5px 5px 5px 5px"></textarea>
+                    </div>
 
-                <button type="submit" class="btn btn-success inputs" style="margin-bottom: 15px; margin-left: 15px">SAVE COMMENT</button>
-            </form>
+                    <button type="submit" class="btn btn-success inputs" style="margin-bottom: 15px; margin-left: 15px">SAVE COMMENT</button>
+                </form>
+            @endauth
 
         @endif
         </div>
@@ -94,7 +96,7 @@
             <h3>COMMENTS</h3>
             <hr>
             @foreach($comments as $comment)
-                <h5>BY: {{ $comment->issuer }}</h5>
+                <h5>BY: {{ \App\User::find($comment->issuer)->username }}</h5>
                 <p>{{$comment->content  }}</p>
                 <br>
             @endforeach
